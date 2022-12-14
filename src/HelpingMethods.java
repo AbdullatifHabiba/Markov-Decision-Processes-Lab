@@ -8,10 +8,8 @@ public class HelpingMethods {
             maxChar = 'D';
         }
         if (i - 1 >= 0 && maximumV<gridArr[i - 1][j]) {
-
             maximumV = gridArr[i - 1][j];
             maxChar = 'U';
-
         }
         if (j+1 <3 && maximumV<gridArr[i][j+1]) {
 
