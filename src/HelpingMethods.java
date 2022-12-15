@@ -31,7 +31,12 @@ public class HelpingMethods {
         for(int i=0;i<3;i++)
         {
             for(int j=0;j<3;j++)
+
             {
+                if(!(i==0 &&j==0 || i==0&&j==2)) {
+                    gridArr[i][j]=  maxvalue(i,j,gridArr,.99,reward);
+
+                }
                 grid_policy[i][j]=findDirection(i,j,gridArr,reward,grid_policy[i][j]);
             }
         }
@@ -75,7 +80,47 @@ public class HelpingMethods {
 
         return q;
     }
+    static double maxvalue(int i,int j,double[][]gridArr,double discount,int[][]rewardArr){
+        double max=-1e9;
+        double q;
+        // get value of right action
+        if (j < 2){q = .8 * (rewardArr[i][j + 1] + discount * gridArr[i][j + 1]);}
+        else{q = .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        if (i > 0){ q += .1 * (rewardArr[i - 1][j] + discount * gridArr[i - 1][j]); }
+        else{q += .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        if(i<2){q += .1 * (rewardArr[i + 1][j] + discount * gridArr[i + 1][j]);}
+        else{q += .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        max=Math.max(q,max);
 
+
+        //get value of up action
+        if (i < 2){  q = .8 * (rewardArr[i + 1][j] + discount * gridArr[i + 1][j]);}
+        else{q = .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        if (j > 0){q += .1 * (rewardArr[i][j - 1] + discount * gridArr[i][j - 1]);}
+        else{q += .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        if (j < 2){q += .1 * (rewardArr[i][j + 1] + discount * gridArr[i][j + 1]);}
+        else{q += .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        max=Math.max(q,max);
+        //get value of down action
+        if (i > 0){ q = .8 * (rewardArr[i - 1][j] + discount * gridArr[i - 1][j]) ;}
+        else{q = .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        if (j > 0){q += .1 * (rewardArr[i][j - 1] + discount * gridArr[i][j - 1]);}
+        else{q += .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        if (j < 2){ q += .1 * (rewardArr[i][j + 1] + discount * gridArr[i][j + 1]);}
+        else{q += .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        max=Math.max(q,max);
+        //get value of left action
+        if (j > 0){q = .8 * (rewardArr[i][j - 1] + discount * gridArr[i][j - 1]) ;}
+        else{q = .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        if (i > 0) {q += .1 * (rewardArr[i - 1][j] + discount * gridArr[i - 1][j]);}
+        else{q += .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        if (i < 2){q += .1 * (rewardArr[i + 1][j] + discount * gridArr[i + 1][j]);}
+        else{q += .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
+        max=Math.max(q,max);
+
+        return max;
+
+    }
     public static  boolean checkPolicy(char[][] prevPolicy, char[][] grid_policy) {
         for(int i=0;i<3;i++)
         {
