@@ -25,7 +25,7 @@ public class Main {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (!(i == 0 && j == 0 || i == 0 && j == 2)) {
-                        gridArr[i][j] = Math.max(HelpingMethods.maxvalue(i, j, PrevGrid, discount, rewardArr), gridArr[i][j]);
+                        gridArr[i][j] = Math.max(HelpingMethods.maxvalue(i, j, gridArr, discount, rewardArr), gridArr[i][j]);
                         d = Math.max(d, Math.abs(gridArr[i][j] - PrevGrid[i][j]));
                         grid_policy[i][j] = HelpingMethods.findDirection(i, j, gridArr, rewardArr, grid_policy[i][j]);
                     }
