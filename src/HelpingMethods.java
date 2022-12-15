@@ -27,7 +27,7 @@ public class HelpingMethods {
         return maxChar;
     }
 
-    public static void edit_printPolicy(double[][]gridArr,char[][]grid_policy,int [][] reward) {
+    public static void policyExtraction(double[][]gridArr,char[][]grid_policy,int [][] reward) {
         for(int i=0;i<3;i++)
         {
             for(int j=0;j<3;j++)
@@ -72,6 +72,55 @@ public class HelpingMethods {
             if (i < 2){q += .1 * (rewardArr[i + 1][j] + discount * gridArr[i + 1][j]);}
             else{q += .1 * (rewardArr[i][j] + discount * gridArr[i][j]);}
         }
+
         return q;
     }
+
+    public static  boolean checkPolicy(char[][] prevPolicy, char[][] grid_policy) {
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                if(prevPolicy[i][j] != grid_policy[i][j])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
+    public static void print(char[][] policy)
+    {
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                System.out.print(policy[i][j]+" ");
+            }
+            System.out.println();
+        }
+        System.out.println("\n");
+    }
+
+    public static void copyVal(double[][] gridArr,double[][] prev) {
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                prev[i][j] = gridArr[i][j];
+            }
+        }
+    }
+    public static void copyPolicy(char[][] prev,char[][] gridArr) {
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                prev[i][j] = gridArr[i][j];
+            }
+        }
+    }
 }
+
