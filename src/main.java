@@ -43,17 +43,21 @@ public class main {
         while( true){
             double d=0;
             copyVal(gridArr,PrevGrid);
-           // System.out.println("lll");
+            print(grid_policy);
            for (int i=0;i<3 ;i++) {
              for (int j=0;j<3;j++) {
                 gridArr[i][j] = Math.max(HelpingMethods.Q_value(i, j, grid_policy, PrevGrid, discount, rewardArr), gridArr[i][j]);
+                 System.out.print( gridArr[i][j]+" ");
                 d =Math.max(d, Math.abs(gridArr[i][j]-PrevGrid[i][j]));
              }
+               System.out.println("\n");
            }
+            print(grid_policy);
+            HelpingMethods.edit_printPolicy(gridArr,grid_policy);
         if(d<0.0001)
             break;
-        HelpingMethods.edit_printPolicy(gridArr,grid_policy);
-        print(grid_policy);
+
+
          }
     }
     public static void main(String[] args) {
@@ -65,7 +69,7 @@ public class main {
         double[][]PrevGrid ={{1,1,1},{1,1,1},{1,1,1}};
         double discount=0.99;
 
-        Value_Iteration(gridArr,grid_policy,PrevGrid,0.99,rewardArr);
+        Value_Iteration(gridArr,grid_policy,PrevGrid,discount,rewardArr);
         for(int i=0;i<3;i++)
         {
             for(int j=0;j<3;j++)
