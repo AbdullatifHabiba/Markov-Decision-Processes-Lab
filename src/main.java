@@ -34,6 +34,8 @@ public class main {
         while( true){
             double d=0;
             HelpingMethods.copyVal(gridArr,PrevGrid);
+            gridArr[0][0]=rewardArr[0][0];
+            gridArr[0][2]=rewardArr[0][2];
            for (int i=0;i<3 ;i++) {
              for (int j=0;j<3;j++) {
                  if(!(i==0 &&j==0 || i==0&&j==2)) {
@@ -58,19 +60,19 @@ public class main {
         double[][]PrevGrid ={{1,1,1},{1,1,1},{1,1,1}};
         double discount=0.99;
 
-       // Value_Iteration(gridArr,grid_policy,PrevGrid,0.99,rewardArr);
-        Policy_Iteration(gridArr,grid_policy,PrevGrid,0.99,rewardArr);
-//        for(int i=0;i<3;i++)
-//        {
-//            for(int j=0;j<3;j++)
-//            {
-//                if((i==0 &&j==0 || i==0&&j==2)) {
-//                    System.out.print(rewardArr[i][j]+" ");
-//                }else {
-//                    System.out.print(gridArr[i][j] + " ");
-//                }
-//            }
-//            System.out.println();
-//        }
+        Value_Iteration(gridArr,grid_policy,PrevGrid,0.99,rewardArr);
+      //  Policy_Iteration(gridArr,grid_policy,PrevGrid,0.99,rewardArr);
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                if((i==0 &&j==0 || i==0&&j==2)) {
+                    System.out.print(rewardArr[i][j]+" ");
+                }else {
+                    System.out.print(gridArr[i][j] + " ");
+                }
+            }
+            System.out.println();
+        }
     }
 }
