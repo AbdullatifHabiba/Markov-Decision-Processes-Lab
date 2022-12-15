@@ -196,18 +196,17 @@ public class HelpingMethods {
             }
             System.out.println();
         }
-        System.out.println("\n");
     }
 
     public static void printGrid(double[][] grid, int[][] reward) {
-        System.out.println("-------------------------------");
+        System.out.print("-------------------------------\n");
         for (int i = 0; i < 3; i++) {
             System.out.print("|");
             for (int j = 0; j < 3; j++) {
                 if ((i == 0 && j == 0 || i == 0 && j == 2)) {
-                    System.out.printf(" %.6g |", (double) reward[i][j]);
+                    System.out.printf(String.format(java.util.Locale.US," %.6g |", (double) reward[i][j]));
                 } else {
-                    System.out.printf(" %.6g |", grid[i][j]);
+                    System.out.print(String.format(java.util.Locale.US," %.6g |", grid[i][j]));
                 }
             }
             System.out.println("\n-------------------------------");
