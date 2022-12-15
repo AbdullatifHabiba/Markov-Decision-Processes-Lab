@@ -39,20 +39,23 @@ public class main {
 
     public static void Value_Iteration(double[][]gridArr,char[][]grid_policy,double[][]PrevGrid,double discount,int[][]rewardArr)
     {
-
+//        gridArr[0][0]=rewardArr[0][0];
+//        gridArr[0][2]=rewardArr[0][2];
+//        HelpingMethods.edit_printPolicy(gridArr,grid_policy);
         while( true){
             double d=0;
             copyVal(gridArr,PrevGrid);
-           // System.out.println("lll");
            for (int i=0;i<3 ;i++) {
              for (int j=0;j<3;j++) {
-                gridArr[i][j] = Math.max(HelpingMethods.Q_value(i, j, grid_policy, PrevGrid, discount, rewardArr), gridArr[i][j]);
-                d =Math.max(d, Math.abs(gridArr[i][j]-PrevGrid[i][j]));
+                 if(!(i==0 &&j==0 || i==0&&j==2)) {
+                     gridArr[i][j] = Math.max(HelpingMethods.Q_value(i, j, grid_policy, PrevGrid, discount, rewardArr), gridArr[i][j]);
+                     d = Math.max(d, Math.abs(gridArr[i][j] - PrevGrid[i][j]));
+                 }
              }
            }
         if(d<0.0001)
             break;
-        HelpingMethods.edit_printPolicy(gridArr,grid_policy);
+        HelpingMethods.edit_printPolicy(gridArr,grid_policy,rewardArr);
         print(grid_policy);
          }
     }
@@ -61,7 +64,7 @@ public class main {
         int r =sc.nextInt();
         char[][] grid_policy={{'-','R','-'},{'R','R','R'},{'R','R','R'}};
         int[][]rewardArr={{r,-1,10},{-1,-1,-1},{-1,-1,-1}};
-        double[][]gridArr={{r,0,10},{0,0,0},{0,0,0}};
+        double[][]gridArr={{0,0,0},{0,0,0},{0,0,0}};
         double[][]PrevGrid ={{1,1,1},{1,1,1},{1,1,1}};
         double discount=0.99;
 
@@ -70,7 +73,11 @@ public class main {
         {
             for(int j=0;j<3;j++)
             {
-                System.out.print(gridArr[i][j]+" ");
+                if((i==0 &&j==0 || i==0&&j==2)) {
+                    System.out.print(rewardArr[i][j]+" ");
+                }else {
+                    System.out.print(gridArr[i][j] + " ");
+                }
             }
             System.out.println();
         }
