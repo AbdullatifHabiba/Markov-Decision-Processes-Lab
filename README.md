@@ -9,10 +9,10 @@
 ![requirement statement description](./requirement.png).
 
 * After try r=100 the result of value and process iteration is :
-![result at r=100 ](./At r=100.png).
+![result at r=100](./At r=100.png).
 
 
 * After try r=-1 the result of value and process iteration is :
-![result at r=-1 ](./At r=-1.png).
+![result at r=-1](./At r=-1.png).
 
 
