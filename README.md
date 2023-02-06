@@ -3,7 +3,7 @@
 * This lab show how agent go to the goal state which have maximum value with smallest moves.
 * r is the maximum reward .
 * The problem statement is:
-![problem statement description](./Problem Statement.png).
+![problem statement description](./problemExplanation.png).
 
 * The requirement is : 
 ![requirement statement description](./requirement.png).
